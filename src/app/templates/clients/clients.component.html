@@ -1,0 +1,97 @@
+<div class="container" fxLayout="column nowrap">
+
+    <!-- filter -->
+    <div class="search-div">
+        <button class="button" mat-raised-button (click)="onPopupCreate()">
+            <mat-icon>add</mat-icon>Cliente
+        </button>
+        <mat-form-field class="search-form-field" floatLabel="never">
+            <input matInput [(ngModel)]="searchKey" placeholder="Ingrese mas de tres caracteres" autocomplete="off"
+                (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <div class="activities">
+            <span><a (click)="listActive()"><img src="../../../assets/images/client-enable.png"
+                        alt="client-enable.png"></a></span>
+            <span><a (click)="listInactive()"><img src="../../../assets/images/client-disable.png"
+                        alt="client-disable.png"></a></span>
+        </div>
+    </div>
+
+    
+
+    <!-- table list client -->
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <h2>Listado de clientes: <strong>{{statusTable}}</strong></h2>
+        <table mat-table matSort [dataSource]="listClient" class="mat-elevation-z8">
+
+            <!-- detail of current client -->
+            <ng-container matColumnDef="detail">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon matTooltipClass="tooltip" matTooltip="Detalle" (click)="detailClient(element.cid)" id="detail-icon">visibility</mat-icon>
+                </td>
+            </ng-container>
+
+            <!-- name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- phone Column -->
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+            </ng-container>
+
+            <!-- address Column -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Fecha ingreso </th>
+                <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd/MM/yyyy'}} </td>
+            </ng-container>
+
+            <!-- distribuitors Column -->
+            <ng-container matColumnDef="numberID">
+                <th mat-header-cell *matHeaderCellDef> Cedula </th>
+                <td mat-cell *matCellDef="let element"> {{element.numberID}} </td>
+            </ng-container>
+
+            <!-- visit Column -->
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let element"> {{element.state | stateClient}} </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <!-- [ngClass]="{'hide': element.pay}" -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>  
+                <td mat-cell *matCellDef="let element">
+                    <button class="orders" matTooltipClass="tooltip"   matTooltip="Pagar"  matTooltipPosition="left" 
+                        mat-icon-button (click)="pay(element)" >
+                        <img src="../../../assets/images/pay-button.png" alt="generate-order-icon" width="24px"
+                            height="23px">
+                    </button>
+                    <button class="edit" matTooltipPosition="left" matTooltipClass="tooltip" matTooltip="Editar" mat-icon-button
+                        (click)="onPopupEdit(element)">
+                        <mat-icon>launch</mat-icon>
+                    </button>
+                    <button class="action" matTooltipPosition="right" matTooltipClass="tooltip" matTooltip="Eliminar" mat-icon-button
+                        color="warn" (click)="onDelete(element)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    
+    
+</div>
+<router-outlet></router-outlet>

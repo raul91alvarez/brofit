@@ -1,0 +1,47 @@
+<div class="container-list" fxLayout="row wrap">
+
+    <!-- list from clients pending -->
+    <div class="list" *ngIf="dataPending.length != 0">
+        <h3 class="header">Listado clientes pendientes:</h3>
+        <mat-selection-list [multiple]="false">
+            <cdk-virtual-scroll-viewport style="height: 400px" itemSize="5">
+                <mat-list-option *cdkVirtualFor="let item of dataPending;index as index" [value]="item">
+                    <mat-icon mat-list-icon style="color:rgb(26, 126, 79)" (click)="sendMessange(item)">
+                        send</mat-icon>
+                    <a class="list-item">
+                        <span>{{index +1}} -- </span>
+                        <span> Nombre: <strong> {{item.name}} </strong></span>
+                    </a>
+                    <!-- <mat-icon mat-list-icon style="color:rgb(151, 40, 40)" (click)="deletePending(item)">
+                        delete_outline</mat-icon> -->
+                </mat-list-option>
+            </cdk-virtual-scroll-viewport>
+
+        </mat-selection-list>
+    </div>
+
+    <!-- list from birthday pending -->
+    <div class="list" *ngIf="dataPending.length != 0">
+        <h3 class="header">Listado de Cumpleaños pendientes:</h3>
+        <mat-selection-list [multiple]="false">
+            <cdk-virtual-scroll-viewport style="height: 400px" itemSize="5">
+                <mat-list-option *cdkVirtualFor="let item of dataPendingBirthDay;index as index" [value]="item">
+                    <mat-icon mat-list-icon style="color:rgb(26, 126, 79)" (click)="sendMessange(item)">
+                        send</mat-icon>
+                    <a class="list-item">
+                        <span>{{index +1}} -- </span>
+                        <span> Nombre: <strong> {{item.name}} </strong></span>
+                    </a>
+
+
+                </mat-list-option>
+            </cdk-virtual-scroll-viewport>
+
+        </mat-selection-list>
+    </div>
+
+
+
+</div>
+
+<app-panic></app-panic>

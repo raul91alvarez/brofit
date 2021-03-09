@@ -1,0 +1,27 @@
+@import "~compass-mixins/lib/compass";
+
+
+//variable
+
+
+
+
+@mixin background-body() {
+    background-color: rgba(226,226,226,1);
+    @include filter-gradient(#e2e2e2, #fefefe, horizontal);
+    @include background-image(radial-gradient(center, ellipse cover, rgba(226,226,226,1) 0%, rgba(209,209,209,1) 23%, rgba(219,219,219,1) 45%, rgba(254,254,254,1) 100%));
+}
+
+@mixin background-footer() {
+    background: rgb(113, 115, 117);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin background-header-nav($color) {
+background-color: $color;
+@include filter-gradient(#5c6166, #5f6f7c, central);
+@include background-image(linear-gradient( $color 0%, rgb(75, 82, 88) 100%));
+    
+}
+

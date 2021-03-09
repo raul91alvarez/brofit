@@ -1,0 +1,51 @@
+@import "../../assets/shared_styles/background.scss";
+@import "../../assets/shared_styles/styles_card.scss";
+@import "../../assets/shared_styles/text.scss";
+@import "../../assets/shared_styles/transitions.scss";
+
+//to use var
+$color-container: rgb(129, 175, 190);
+$color-toolbar: rgb(158, 214, 233);
+$color-footer: rgb(54, 70, 75);
+$shadow: rgba(51, 52, 58, 0.918);
+$size-footer: (max-height:3rem);
+$color-title: #fafafa;
+
+
+
+// content of header
+.toolbar  {
+  position: relative;z-index: 10000; width: 100%; height: 3.5rem;  padding: 0px;  @include background-header-nav($color-toolbar);@include card-shadow($shadow);
+  & .spacer{flex: 1 1 auto;}
+  & #logo{border-right: outset rgb(180, 184, 187) 2px; width: 16%;  text-align: center;  & img{height: 3.5rem; width: 90%;}}
+  & h1{padding-left: 1rem; margin: auto; color: $color-title;}
+  & .menu{position: fixed; z-index: 11000;}
+  & .icon{margin: auto; padding: 0px; color: rgba(236, 230, 230, 0.863); & button{border-radius: 150px; padding: 0px; color: white; }}
+  & .bell{margin: auto; padding-right: 1rem; &:hover{cursor: pointer; color: rgb(59, 180, 229) !important;}}
+  & .mat-icon{width: 35px;height: 40px; font-size: 40px; &:hover{cursor: pointer; color: rgb(59, 180, 229) !important;} }
+}
+
+ // styles of routing other components
+.container-home{
+  height: 100vh; width: 100wh; min-width: 600px; background-color: $color-container ;
+    & .body{  z-index: 8000;min-height: calc(80vh - 1rem);  }
+    & .footer{color: white; position: relative; background-color: $color-footer; @include card-shadow(rgb(128, 128, 128));
+    @if map-has-key($size-footer, max-height) {
+      max-height: map-get($size-footer, max-height);
+    } @else{content: 'Map from hom.component.scss not found it';}
+    
+    }
+  }
+
+
+// list pending
+.menu-list{width: 500px;}
+.menu-list .list{
+  background-color: #E3E5E8; width: 50%;
+  & mat-list-option {color: rgb(21, 32, 48);@include header(14px); font-weight: 600;
+      & a span{margin-left: 10px;} };
+      & mat-icon{ padding: 5px;}
+  & mat-list-option:hover{background-color: rgba(94, 190, 228, 0.788);}
+  
+  
+}

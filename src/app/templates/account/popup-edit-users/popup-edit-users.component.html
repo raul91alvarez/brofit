@@ -1,0 +1,78 @@
+
+<a (click)="cancel()"><mat-icon>cancel</mat-icon></a>
+<div class="container" fxLayoutAlign="start" fxLayout="column" fxLayoutGap="1rem">
+    <div class="title">
+        <span>Quieres editar a </span>
+        <span> {{data.displayName}}</span>
+    </div>
+    <span class="spacer"></span>
+    <mat-dialog-content>
+        <!-- Form to create users -->
+        <form id="form" [formGroup]="editForm">
+            <div class="container-form" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="3rem">
+                
+                <div>
+                    <mat-form-field>
+                        <input type="text" autocomplete="false" [ngModel]="data.displayName" matInput placeholder="Nombre" formControlName="displayName">
+                    </mat-form-field>
+                    <div class="alert-validator" *ngIf="f.displayName.invalid && (f.displayName.dirty || f.displayName.touched)">
+                        <div class="container-error-message">
+                            Nombre requerido
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <input matInput autocomplete="false" [ngModel]="data.email" placeholder="Cuenta de correo" type="text"
+                            formControlName="email">
+                    </mat-form-field>
+                    <div class="alert-validator" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+                        <div class="container-error-message">
+                            Usuario requerido
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <input type="password" autocomplete="false" [ngModel]="data.password" matInput placeholder="Contraseña"
+                            formControlName="password">
+                    </mat-form-field>
+                    <div class="alert-validator"
+                        *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                        <div class="container-error-message">
+                            Ingrese una contraseña
+                        </div>
+                    </div>
+                </div>
+
+                    <div>
+                        <mat-form-field>
+                            <input type="password" autocomplete="false" [ngModel]="data.password" (keyup)="verificCredential()" matInput placeholder="Verificar contraseña"
+                            [formControl]="verificPassword" >
+                        </mat-form-field>
+                        <div class="alert-validator"
+                            *ngIf="checkPass">
+                            <div class="container-error-message">
+                                Verifique la contraseña
+                            </div>
+                        </div>
+                    </div>
+
+                
+
+
+                <mat-checkbox [ngModel]="data.disabled" formControlName="disabled">Bloquear usuario</mat-checkbox>
+
+
+                <!-- action of dialog-->
+                <div class="action" fxLayout="row" fxLayoutGap="30px">
+                    <button class="button" (click)="edit()"  mat-raised-button [disabled]="!editForm.valid">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

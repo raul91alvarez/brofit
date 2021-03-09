@@ -1,0 +1,101 @@
+<div class="container">
+
+    <a (click)="cancel()">
+        <mat-icon>cancel</mat-icon>
+    </a>
+    <div class="title">
+        <span>Rellene el formulario</span>
+    </div>
+    <span class="spacer"></span>
+    <mat-horizontal-stepper linear #stepper>
+        <!-- first form -->
+        <mat-step [stepControl]="firstFormGroup" errorMessage="Información requerida">
+            <form [formGroup]="firstFormGroup" fxLayout="row wrap">
+                <ng-template matStepLabel>Datos</ng-template>
+                <mat-form-field>
+                    <mat-label>Nombre y apellido</mat-label>
+                    <input matInput placeholder="Nombre y apellido" autocomplete="off" formControlName="name" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Teléfono de contacto</mat-label>
+                    <input type="number" matInput autocomplete="off" placeholder="telefono" formControlName="phone">
+                </mat-form-field>
+                
+                <!-- field CI with reactive form to verific of CI duple -->
+                <div>
+                    <mat-form-field>
+                        <mat-label>Cédula</mat-label>
+                        <input type="number"  (keyup)="verificCI()"  [(ngModel)]="CI" matInput autocomplete="off" placeholder="telefono" formControlName="numberID">
+                    </mat-form-field>
+                    <div class="alert-validator" *ngIf="checkCIDuple">
+                        <div class="container-error-message">
+                            Este cedula ya existe
+                        </div>
+                    </div>
+                </div>
+                
+                <mat-form-field>
+                    <mat-label>Horarios</mat-label>
+                    <mat-select formControlName="time">
+                        <mat-option value="Sin Asignar">--Sin asignar--</mat-option>
+                        <mat-option value="Mañana">Mañana</mat-option>
+                        <mat-option value="Tarde">Tarde</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="select-checkbox">
+                    <div fxLayout="column nowrap" fxLayoutAlign="center">
+                        <mat-checkbox class="check-message" (click)="changeFocusSchedule()" formControlName="schedule">Registrar cumpleaño</mat-checkbox>
+                        <ng-container *ngIf="firstFormGroup.value.schedule">
+                            <mat-form-field class="datePicker" color="accent" appearance="fill">
+                                <mat-label>Calendario</mat-label>
+                                <input matInput (dateInput)="dateSchedule($event)" [matDatepicker]="picker1" autocomplete="off" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+                        </ng-container>
+                    </div>
+                </div>
+                <div>
+                    <button mat-button matStepperNext [disabled]="!firstFormGroup.valid" >Seguir</button>
+                </div>
+            </form>
+        </mat-step>
+        <!-- second Form -->
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Informacion adicional</ng-template>
+
+                <!-- data of fields product -->
+                <div class="container-product" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="3rem">
+                    <div fxLayout="row nowrap">
+                        <mat-form-field>
+                            <mat-label>Informacion de salud</mat-label>
+                            <mat-select formControlName="hospital">
+                                <mat-option value="">--Sin asignar--</mat-option>
+                                <mat-option value="Medica Uruguaya">Medica Uruguaya</mat-option>
+                                <mat-option value="CASMU">CASMU</mat-option>
+                                <mat-option value="ASSE">ASSE</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="textarea" appearance="outline">
+                            <mat-label>Problemas de salud...</mat-label>
+                            <textarea matInput formControlName="sick" maxlength="300"></textarea>
+                        </mat-form-field>
+
+                        <mat-form-field class="textarea" appearance="outline">
+                            <mat-label>Observaciones...</mat-label>
+                            <textarea matInput formControlName="observations" maxlength="300"></textarea>
+                        </mat-form-field>
+
+                        <div fxLayout="column" fxLauyoutGap="1rem">
+                            <mat-checkbox class="check-message" [formControl]="checkWhatsApp">Enviar WhatsApp</mat-checkbox>
+                            <button mat-button matStepperPrevious>atrás</button>
+                            <button mat-button (click)="onSubmit()">crear</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "webgym-7ef1d": {
+      "hosting": {
+        "webgym": [
+          "webgym-7ef1d"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+
+//transitions (property, time)
+@mixin transitions($property, $time) {
+    transition: $property $time ease-in-out;
+    -webkit-transition: $property $time ease-in-out; /** Chrome & Safari **/
+    -moz-transition: $property $time ease-in-out; /** Firefox **/
+    -o-transition: $property $time ease-in-out; /** Opera **/
+} 
+
+
+
+
+//transform-rotate
+@mixin rotateY($value) {
+    transform: rotateY($value);
+    -webkit-transform: rotateY($value); /** Chrome & Safari **/
+    -o-transform: rotateY($value); /** Opera **/
+    -moz-transform: rotateY($value); /** Firefox **/
+    
+}
+
+//transform-rotate
+@mixin rotateZ($value) {
+    transform: rotateY($value);
+    -webkit-transform: rotateY($value); /** Chrome & Safari **/
+    -o-transform: rotateY($value); /** Opera **/
+    -moz-transform: rotateY($value); /** Firefox **/
+    
+}
+

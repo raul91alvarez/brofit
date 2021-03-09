@@ -1,0 +1,12 @@
+
+
+// value initial and porcent growing 
+@function growButton($var1,$porcent){
+    @return $var1+($var1*$porcent)/100
+  };
+
+
+  // value initial and porcent growing 
+  @function growText($var1,$porcent){
+      @return $var1+($var1*$porcent)/100
+    };

@@ -1,0 +1,35 @@
+@import "../../../templates/home.component.scss";
+
+$size-panic: 4rem;
+
+.container {
+  position: fixed;
+  right: 2%;
+  width: 4rem;
+  bottom: 7rem !important;
+
+  @if map-has-key($size-footer, max-height) {
+    bottom: map-get($size-footer, max-height);
+  }
+
+  @else {
+    content: 'Map from hom.component.scss not found it';
+  }
+}
+
+.container button {
+    width: 40px;
+    color: blue;
+    background-color: #fafafa;
+    border-radius: 200px 200px 0px 200px;
+    -moz-border-radius: 200px 200px 0px 200px;
+    -webkit-border-radius: 200px 200px 0px 200px;
+    border: 1px outset #eee;
+    transition: all 0.2s ease-in-out;
+  }
+
+
+// menu
+button:hover{transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);}
+

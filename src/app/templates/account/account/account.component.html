@@ -1,0 +1,152 @@
+<div class="container" fxLayout="column wrap" fxLayoutGap="3rem">
+    <div class="accordion">
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Crear Usuario
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{panelOpenState ? 'Click para cerrar' : 'Click para desplegar'}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+
+                <!-- Form to create users -->
+                <form id="form" [formGroup]="userForm">
+                    <div class="container-form" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="2rem">
+
+
+                        <div>
+                            <mat-form-field>
+                                <input type="text" autocomplete="off" matInput placeholder="Nombre"
+                                    formControlName="displayName">
+                            </mat-form-field>
+                            <div class="alert-validator"
+                                *ngIf="f.displayName.invalid && (f.displayName.dirty || f.displayName.touched)">
+                                <div class="container-error-message">
+                                    Nombre requerido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <mat-form-field>
+                                <input matInput autocomplete="off" [(ngModel)]="userName" placeholder="Cuenta de correo" type="mail"
+                                    formControlName="email" (keyup)="verificUser()" required>
+                            </mat-form-field>
+                            <div class="alert-validator" *ngIf="!f.email.invalid && checkUserDuple">
+                                <div class="container-error-message">
+                                    Este usuario ya existe
+                                </div>
+                            </div>
+                            <div class="alert-validator" *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+                                <div class="container-error-message">
+                                    Usuario requerido
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <mat-form-field>
+                                <input type="password" autocomplete="off" matInput placeholder="Contraseña"
+                                    formControlName="password" required>
+                            </mat-form-field>
+                            <div class="alert-validator"
+                                *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+                                <div class="container-error-message">
+                                    Contraseña mayor de 6 digitos 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="userForm.valid">
+                            <mat-form-field>
+                                <input type="password" autocomplete="false" (keyup)="verificCredential()" matInput placeholder="Verificar contraseña"
+                                [formControl]="verificPassword" >
+                            </mat-form-field>
+                            <div class="alert-validator"
+                                *ngIf="!checkPass">
+                                <div class="container-error-message">
+                                    Las contraseñas no coinciden
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- action of dialog-->
+                        <div class="action" fxLayout="row" fxLayoutGap="30px">
+                            <button class="button" (click)="onresetForm()" mat-raised-button>Clear</button>
+                            <button class="button" (click)="onSubmit()" mat-raised-button [disabled]="!checkPass">
+                                <mat-icon>done</mat-icon>Create
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+
+    <!-- tabla data user  -->
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <table mat-table [dataSource]="dataUsers" class="mat-elevation-z8">
+
+            <!-- name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
+            </ng-container>
+
+            <!-- mail Column -->
+            <ng-container matColumnDef="mail">
+                <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <!-- dateCreate Column -->
+            <ng-container matColumnDef="dateCreate">
+                <th mat-header-cell *matHeaderCellDef> Fech.Creado </th>
+                <td mat-cell *matCellDef="let element"> {{element.date | date:"dd/mm/yy"}} </td>
+            </ng-container>
+
+            <!-- state Column -->
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let element"> {{element.disabled | stateUsers }} </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="action" matTooltipPosition="left" matTooltip="edit user" mat-icon-button
+                        (click)="onEdit(element)">
+                        <mat-icon>launch</mat-icon>
+                    </button>
+                    <button class="action" matTooltipPosition="right" matTooltip="delete user" mat-icon-button
+                        color="warn" (click)="onDelete(element.uid)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+         
+        <!-- Progress bar  -->
+        <div class="progress-bar" *ngIf="!dataUsers">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <div>
+        
+    </div>
+
+</div>
+
+<app-panic></app-panic>
+

@@ -1,0 +1,44 @@
+@import "../assets/shared_styles/text.scss";
+@import "../assets/shared_styles/background.scss";
+
+
+$placeholder_color: rgba(255, 255, 255, 0.911);
+$header_login: #23E2B7;
+// $background_body: rgba(126, 124, 124, 0.932);
+
+
+
+.container{ height: 100vh; min-height: 460px; min-width: 900px; @include background-body()}
+
+
+.image{ width: 30%; height: 28rem;text-align: center; background-color: white;}
+.login{width: 30%; height: 28rem;  text-align: center; background-color: #444A4A;
+    & h2{margin: 15% auto 0px auto; font-size: 220%; color: $header_login;}
+}
+
+.form{ width: 100%;  margin-top: 7%;
+    & #input{ color: $header_login; & #mail,#pass{width: 120%; color: whitesmoke; font-size: larger; }}
+    & #action { color: $header_login; margin-top: 2rem; 
+        & button{ border-radius: 62px; width: 10rem; font-size: large; font-family: serif; color: black;background-color: $header_login;}
+    }
+}
+
+// styles for input
+mat-label{color: $placeholder_color; font-family: "serif"; font-size: x-large; margin-bottom: 1rem;}
+
+@include placeholder_login( rgba(255, 255, 255, 0.548));
+
+md-input-container .md-default-theme .md-placeholder{color:rgb(23, 175, 36) !important; } // change color input placeholder
+
+mat-error{ color: $header_login} // change color show error
+
+.mat-input-underline { background-color: red; }
+.mat-input-ripple { background-color: red; }
+
+.input-field {
+    color: $header_login;
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+  }
+
+

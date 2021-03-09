@@ -1,0 +1,43 @@
+@import "../../../../assets/shared_styles/text.scss";
+
+//var 
+$color-th: rgba(42, 98, 153, 0.979);
+$color-card : rgb(187, 196, 202); 
+
+
+
+
+.container-card{
+    background-color: $color-card; width: 95%; margin: auto; margin-top: 1.5rem;
+}
+mat-card-header{
+     width: 100%; 
+    & #back{float: left; margin-left: 0px; &:hover{cursor: pointer;}}
+}
+
+// container of card
+mat-card-content{
+    width: 100%; 
+    & h5{padding-right: 7px;color: rgb(17, 45, 168); @include header(14px); font-weight: 600;}   
+    & p{ font: oblique bold 100% Segoe UI; padding-top: 0.5rem; } 
+    & .first-col{ width: 60%;
+        & .data {width: 45%;  padding: 0.5rem auto; margin-top: 0.5rem;}   
+    }
+
+    & .second-col{  
+        width: 30%;  
+    }
+}
+
+
+// table od payments
+.container-payments{ width: 100%; margin: 2rem 0rem; text-align: center; background-color: inherit;}
+#header-table{color:$color-th }
+// styles of table
+table{
+    width: 80%; margin: auto;
+    & td{@include textMenu(14px); text-align: start;}
+    & th{ color: rgb(245, 245, 248); background-color: $color-th;@include header(16px); font-weight: 500; font-style: italic;}
+    & th,td{ padding: 0rem 1rem;}   
+    & mat-icon{color: red;}
+  }

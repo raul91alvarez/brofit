@@ -1,0 +1,41 @@
+@import "../../../../assets/shared_styles/text.scss";
+
+
+
+.container{
+    width: 100%; margin-top: 2rem; text-align: center;
+    & .comment{position: relative;right: 0px; width: 34%; margin-left: 3rem; font-weight: 500; color: rgb(17, 45, 168 ); @include text(15px)}
+}
+
+.accordion{width: 60%; margin: 2rem auto;}
+mat-accordion{
+    width: 60%; 
+    & mat-expansion-panel{background-color: rgba(109, 169, 230, 0.932);}
+    & mat-panel-title{color: rgb(9, 20, 66); font-weight: 500;}
+    
+}
+
+table{
+    width: 90%; margin: auto;
+    & th{ text-align: center; color: rgb(238, 239, 245); background-color: rgba(28, 81, 134, 0.979);@include header(14px); font-weight: 500; font-style: italic;}
+}
+
+.progress-bar{width: 90%; margin:auto}
+.no-data {
+    width: 100%; margin-top: 5px;
+    & img{max-width: 100px;}
+}
+
+/* message of error of validator form*/
+.alert-validator{
+    margin-top: -1rem;
+    padding: 0px;
+    & .container-error-message{
+        padding: 0px;
+        margin-left: 0 !important;
+        color: rgb(124, 33, 33);
+        text-align: start;
+        font-size: small;
+      }
+  }
+  

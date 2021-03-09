@@ -1,0 +1,53 @@
+@import "../../../../../assets/shared_styles/text.scss";
+
+
+.title{
+    color: #12b0ee; font-style: Segoe UI; font-weight: 500;font-size: 160%; margin-bottom: 1rem;
+    & span{text-align: center; align-content: center; }
+  }
+  a{color: rgb(167, 13, 13);float:right; margin-top: -1rem; & :hover{cursor: pointer;}}
+  .spacer{width: 100%; height: 2px; margin-top: -0.5rem; background-color: #293A55;}
+  
+  .mat-stepper-horizontal {
+      margin-top: 8px;
+  }
+    
+  .chip-list {
+      width: 50%;
+  }
+  
+    //form
+  .container-product{ width: 100%;
+   & .add{margin-top: -2rem !important; margin-bottom: 1rem;}
+  }
+  .distribuitor{width: 50%;}
+  .soda{ width: 7rem; color: rgb(17, 45, 168)}
+  .textarea{ color: rgb(17, 45, 168);width: 60%;  }
+  .check{width: 100%; color: rgb(17, 45, 168); @include header(14px)}
+  .mat-form-field {
+      margin-top: 16px; margin-right: 20px;
+  }
+
+/* message of error of validator form*/
+.alert-validator{
+    margin-top: -1rem;
+    padding: 0px;
+    & .container-error-message{
+        padding: 0px;
+        margin-left: 0 !important;
+        color: rgb(124, 33, 33);
+        text-align: start;
+        font-size: small;
+      }
+  }
+
+
+
+
+  // styles datepicker
+  .select-checkbox {width: 100%; margin-top: 2rem;margin-bottom: 5px; & .datePicker{width: 14rem; margin-top: 10px;}}
+  .check-message{  color: rgb(17, 45, 168); @include header(14px); width: 50%;}
+  
+  
+  
+    

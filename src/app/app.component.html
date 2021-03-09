@@ -1,0 +1,40 @@
+<div *ngIf="!isAuth" class="container" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="image" fxLayoutAlign="center center">
+        <img src="../assets/images/brofit_logo.png" width="100%" height="60%"  alt="logo of gym">
+    </div>
+    <div class="login">
+        <h2>Bienvenido</h2>
+
+        <form  class="form" (ngSubmit)="onSubmit()" fxLayout="column nowrap" fxLayoutAlign="center center">
+            <div class="container-form">
+                <div id="input">
+                    <div>
+                        <mat-form-field id="mail">
+                            <mat-label>Usuario</mat-label>
+                            <input matInput type="email" placeholder="Ej: analista@gmail.com" autocomplete="off" [ngModel]="user" name="email" [formControl]="email" >
+                            <mat-error *ngIf="email.invalid" >{{getErrorMail()}}</mat-error>
+                         </mat-form-field>                            
+                    </div>
+
+                    <div>
+                        <mat-form-field id="pass">
+                             <mat-label>Contraseña</mat-label>
+                             <input  matInput type="password" [ngModel]="password" name="pass" [formControl]="pass"  autocomplete="off">
+                             <mat-error *ngIf="pass.invalid">{{getErrorPass()}}</mat-error>
+                         </mat-form-field>
+                    </div>
+                    <mat-checkbox [formControl]="check">Recordarme!</mat-checkbox>
+                </div>
+                <div id="action" fxflex fxLayout="column">
+                    
+                    <div class="button">
+                        <button mat-raised-button type="submit"  [disabled]="email.invalid || pass.invalid">Ingresar</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+<router-outlet *ngIf="isAuth"></router-outlet>

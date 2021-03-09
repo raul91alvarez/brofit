@@ -1,0 +1,45 @@
+<div class="container-home">
+
+
+    <div class="toolbar" fxLayout="row nowrap">
+        <span id="logo"><img src="../../assets/images/brofit_logo.png" alt="logo_brofit"></span>
+        
+        <h1>{{indexPage == "" ? "Sistema de Gimnasio" : indexPage}}</h1>
+        <span class="spacer"></span>
+        <span class="icon bell"><button mat-button><mat-icon matTooltipClass="tooltip" matTooltip="Ordenes pendientes" [routerLink]="['notifications']" [matBadgeHidden]="hideBadge" [matBadge]="accountBadge" matBadgeColor="warn">notification_important</mat-icon></button></span>
+        <span class="icon"><button mat-button [matMenuTriggerFor]="menu"><mat-icon matTooltipClass="tooltip" matTooltip="Usuario" style="color: white;">account_circle</mat-icon></button></span>
+
+   
+    </div>
+
+
+
+
+
+     <!-- list menu of login , showing data of current user -->
+   <mat-menu class="menu" #menu="matMenu">
+    <button mat-menu-item disabled="true">
+        <span style="color: rgb(24, 44, 87)">{{displayName}}</span>
+    </button>
+    <button mat-menu-item disabled="true">
+        <mat-icon style="color: #1976d2;">mail-outline</mat-icon>
+        <span style="color: rgb(24, 44, 87)">{{mail}}</span>
+    </button>
+    <button style="border-top: outset rgba(80, 80, 83, 0.911) 0.5px;" mat-menu-item (click)="outSession()">
+        <mat-icon style="color: #1976d2;">lock</mat-icon>
+        <span>Cerrar sesión</span>
+    </button>
+  </mat-menu>
+
+
+
+    <div class="body">
+        <router-outlet></router-outlet>      
+               
+    </div>
+
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>
+
+</div>
