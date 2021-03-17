@@ -1,5 +1,22 @@
+@import "../../../assets/shared_styles/text.scss";
+
+//var 
+$color-th: rgba(42, 98, 153, 0.979);
+$color-card : rgb(187, 196, 202); 
+
+.container{margin-top: 2rem;}
+.accounting{ width: 100%;}
 
 
+table{
+    width: 80%; margin: auto;
+    & td{@include textMenu(14px); text-align: start;}
+    & th{ color: rgb(245, 245, 248); background-color: $color-th;@include header(16px); font-weight: 500; font-style: italic;}
+    & th,td{ padding: 0rem 1rem;}   
+    & mat-icon{color: red;}
+    & tr.mat-footer-row {font-weight: bold; }
+  }
 
+#form .month{width: 40px; margin-right: 1rem;}
+#form .year{width: 70px; margin-right: 1rem;}
 
-.accounting{margin-top: 2rem;}

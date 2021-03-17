@@ -120,15 +120,24 @@ export class ClientsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // function of action button
   pay(elmt: ClientInterface) {
+    let account;
     this.sweetalert.payWay()
       .then(result => {
-        if (!result.isDismissed && result.value) {
-          console.log('cash');
-           this.ps.addPayment(elmt, 'Efectivo');  
-      }else if (result.dismiss.toString()=='cancel') {
-        this.ps.addPayment(elmt, 'Tarjeta');
+        account = result.value;
+        
+      if (!result.isDismissed && result.value) {
+        this.sweetalert.confirmPay().then((res)=>{console.log(typeof res.value);
+        if (res.value ==="efectivo") {
+          this.ps.addPayment(elmt, 'Efectivo',account); 
+        }else if (res.value ==='tarjeta') {
+        this.ps.addPayment(elmt, 'Tarjeta',account);
       }
-    });
+        
+        });
+
+            
+      }
+    }).catch((erro)=>{console.log(erro);})
   }
 
   onEdit(elmt: ClientInterface) {

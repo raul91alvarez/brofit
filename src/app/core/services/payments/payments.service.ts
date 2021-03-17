@@ -10,6 +10,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
   providedIn: 'root'
 })
 export class PaymentsService {
+  private tempCollection: AngularFirestoreCollection<PaymentInterface> = null;
   private clientsRef: AngularFirestoreCollection<ClientInterface> = null;
   private paymentsRef: AngularFirestoreCollection<PaymentInterface> = null;
   private statesRef: AngularFirestoreCollection<StateInterface> = null;
@@ -21,6 +22,7 @@ export class PaymentsService {
     this.paymentsRef = this.dbPayments.collection(this.pay);
     this.clientsRef = this.dbClients.collection(this.client);
     this.statesRef = this.dbState.collection(this.state);
+    this.tempCollection = this.dbPayments.collection('payments');
   }
 
     //****** manage date to change states *******/
@@ -46,16 +48,28 @@ export class PaymentsService {
       return Array.from(arr, this.dec2hex).join('')
     }
 
+    // get payments
+    getPayment(){
+        return this.tempCollection.valueChanges();
+      
+    }
+
   // *** add pay and update within client and states collections of pay's states
-  addPayment(data: ClientInterface,state: string){
+  addPayment(data: ClientInterface,state: string,account){
     let date = new Date();
+    let month = date.getMonth()+1
+    let string = month.toString().concat(date.getFullYear().toString());
     let pid = this.generateDid(10);
+    let accountInt = parseInt(account)
     this.paymentsRef.doc(pid).set({
       cid: data.cid,
       pid: pid,
       date: date.toUTCString(),
       state: data.state,
       payForm: state,
+      account: accountInt,
+      monthYear: string,
+
     })
     .then(()=>{
      let currentDay = new Date(date);

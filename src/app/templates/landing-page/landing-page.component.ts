@@ -93,7 +93,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
       type: 'pie',
       data: {
         datasets: [{
-            data: [`${this.clientActive.length+1}`, `${this.clientInactive.length+1}` ],
+            data: [`${this.clientActive.length}`, `${this.clientInactive.length}` ],
             backgroundColor:[
               '#098B4B',
               '#A11C22',
@@ -120,11 +120,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.chart2 = new Chart('canvas2', {
       type: 'bar',
       data: {
-        labels: ['En regla', 'Pendientes', 'Inactivos'],
+        labels: ['En regla', 'Pendientes'],
         datasets: [
           {
-            label: '',
-            data: [`${this.statesActive.length + 1}`, `${this.statesPending.length + 1}`, `${this.statesInactive.length + 1}`],
+            data: [`${this.statesActive.length}`, `${this.statesPending.length}`],
             backgroundColor: [
               '#098B4B',
               '#A11C22',

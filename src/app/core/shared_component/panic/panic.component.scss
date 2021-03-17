@@ -2,20 +2,20 @@
 
 $size-panic: 4rem;
 
-.container {
-  position: fixed;
-  right: 2%;
-  width: 4rem;
-  bottom: 7rem !important;
+// .container {
+//   position: fixed;
+//   right: 2%;
+//   width: 4rem;
+//   bottom: 7rem !important;
 
-  @if map-has-key($size-footer, max-height) {
-    bottom: map-get($size-footer, max-height);
-  }
+//   @if map-has-key($size-footer, max-height) {
+//     bottom: map-get($size-footer, max-height);
+//   }
 
-  @else {
-    content: 'Map from hom.component.scss not found it';
-  }
-}
+//   @else {
+//     content: 'Map from hom.component.scss not found it';
+//   }
+// }
 
 .container button {
     width: 40px;

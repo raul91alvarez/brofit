@@ -29,7 +29,7 @@ $color-title: #fafafa;
 .container-home{
   height: 100vh; width: 100wh; min-width: 600px; background-color: $color-container ;
     & .body{  z-index: 8000;min-height: calc(80vh - 1rem);  }
-    & .footer{color: white; position: relative; background-color: $color-footer; @include card-shadow(rgb(128, 128, 128));
+    & .footer{ position: relative; text-align: end; padding-right: 1rem; 
     @if map-has-key($size-footer, max-height) {
       max-height: map-get($size-footer, max-height);
     } @else{content: 'Map from hom.component.scss not found it';}

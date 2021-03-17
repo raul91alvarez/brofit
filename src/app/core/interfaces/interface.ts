@@ -30,8 +30,10 @@ export interface PaymentInterface {
     pid:string,
     cid: string,
     date: string,
-    state: number,
+    state?: number,
     payForm: string,
+    account?: number,
+    monthYear?:string,
     
 }
 
