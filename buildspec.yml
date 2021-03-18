@@ -19,4 +19,4 @@ phases:
     - mv target/deploy ./
 artifacts:
     type: zip
-    files: deploy/**/*
+    files: '**/*'
