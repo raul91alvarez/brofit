@@ -13,10 +13,7 @@ phases:
     commands:
         - echo Build started 
         - npm run ng build --prod
-  post_build:
-    commands:
-    - echo "Entered the post-build phase"
-    - mv target/deploy ./
+ 
 artifacts:
     type: zip
     files: '**/*'
